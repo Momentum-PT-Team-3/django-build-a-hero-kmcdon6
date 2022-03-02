@@ -7,3 +7,7 @@ from .models import Hero
 class HeroViewSet(viewsets.ModelViewSet):
     queryset = Hero.objects.all().order_by('name')
     serializer_class = HeroSerializer
+
+
+def index(request):
+    return render(request, "index.html") #file name in quotes
