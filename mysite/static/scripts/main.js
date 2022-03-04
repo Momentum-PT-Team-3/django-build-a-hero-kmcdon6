@@ -22,8 +22,10 @@
     // let heroDisplay = document.querySelector("#hero-form")
     // console.log(heroDisplay)  
 
-    let heroURL = "api/heroes/"
+    let heroURL = "api/heroes/" //this url is the API endpoint
+    let heroDisplay = document.querySelector('#hero-display')
 
+function heroList(url){
     fetch(heroURL,{
         
                 method: 'GET',
@@ -40,7 +42,7 @@
     })
     .then(heroArray => {    //json gets loaded and then can be used in second .then
         // console.log(data)
-        let heroDisplay = document.querySelector('#hero-display')
+        
         console.log(heroDisplay)
         for (let hero of heroArray){
             console.log(hero)
@@ -52,6 +54,9 @@
             heroDisplay.appendChild(heroItem)  
         }
     })
+}
+
+function addHero(url){
 
     let HeroForm = document.querySelector("#hero-form")
     console.log(HeroForm)
@@ -75,12 +80,27 @@
         body: heroFormData //content of what you send
 
         })
+
+        .then(response => {
+            return response.json()
+        })
+
+        .then(newHero => {
+            console.log(newHero)
+            let heroItem= document.createElement('li')
+            //template literal below uses backtiks- similar to f string in python
+            heroItem.innerText = `${newHero.name}  ${newHero.alias}` 
+            heroItem.classList.add('blue-border')
+            heroDisplay.appendChild(heroItem) 
+        })
         
         // formData.append('name', hero_name)
         })
+        
+    }
 
-
-
+heroList(heroURL)
+addHero(heroURL)
  
 
 
