@@ -6,16 +6,17 @@ from myapi.models import Hero
 
 # Create your views here.
 def index(request):
-    return render(request, "index.html", {'hero_form': HeroForm}) #file name in quotes
+    hero_form =  HeroForm()
+    return render(request, "index.html", {'hero_form': hero_form}) #file name in quotes
 
 
-def ajax_create_hero(request):
-    hero_name = request.POST.get('hero_name')
-    # alias = request.POST.get('alias')
-    data = {
-        'my_data':hero_name
-    }
-    return JsonResponse(data)
+# def ajax_create_hero(request):
+#     hero_name = request.POST.get('hero_name')
+#     # alias = request.POST.get('alias')
+#     data = {
+#         'my_data':hero_name
+#     }
+#     return JsonResponse(data)
     
     
     # if request.method == "POST":

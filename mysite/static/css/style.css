@@ -1,0 +1,7 @@
+body {
+    background-color: coral;
+}
+/* class gets a . */
+.blue-border {
+    border: 3px  solid blue;
+}
