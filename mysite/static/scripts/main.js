@@ -46,7 +46,10 @@ function heroList(url){
         console.log(heroDisplay)
         for (let hero of heroArray){
             console.log(hero)
-            let heroItem= document.createElement('li')
+            let heroItem= document.createElement('p')
+            //create pk for each hero
+            heroItem.dataset.pk = hero.pk
+            console.log(hero.pk)
             //template literal below uses backtiks- similar to f string in python
             heroItem.innerText = `${hero.name}  ${hero.alias}` 
             //add css class features from css file
@@ -65,8 +68,10 @@ function addHero(url){
         event.preventDefault()  //prevents form's default behavior of reloading the page
         // console.log(event.target)
         let heroFormData = new FormData(HeroForm) //makes a formdata object - carries form to the backend
+        heroFormData.append(hi, hello)
 
         console.log(heroFormData)
+        
         fetch(heroURL, {
             method: 'POST',
         credentials: 'same-origin',
@@ -87,9 +92,19 @@ function addHero(url){
 
         .then(newHero => {
             console.log(newHero)
-            let heroItem= document.createElement('li')
+            let heroItem= document.createElement('p')
+            // heroItem.dataset.deleteButton = newHero.deleteButton
+
+            let deleteButton = document.createElement('button')
+            deleteButton.className = "deleteButton"
+            deleteButton.innerText = `delete`
+            heroItem.appendChild(deleteButton)
+            console.log(deleteButton)
+
+
+
             //template literal below uses backtiks- similar to f string in python
-            heroItem.innerText = `${newHero.name}  ${newHero.alias}` 
+            heroItem.innerText = `${newHero.name}  ${newHero.alias} ${newHero.deleteButton}` 
             heroItem.classList.add('blue-border')
             heroDisplay.appendChild(heroItem) 
         })

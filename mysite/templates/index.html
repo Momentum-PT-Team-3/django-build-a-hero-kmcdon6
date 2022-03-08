@@ -18,6 +18,7 @@
 
            {% csrf_token %}
            {{ hero_form.as_p }}
+           {{ heroItem.deleteButton }}
            <button type="submit">save </button>
         </form>
     </div>
